@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Telegram\Bot;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Bot::class, function ($app) {
+            return new Bot(
+                config("tlg_bot.token"),
+                config("tlg_bot.webhook"),
+            );
+        });
     }
 
     /**
