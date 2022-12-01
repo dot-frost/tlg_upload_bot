@@ -1,12 +1,6 @@
 <?php
 
-use App\Services\Telegram\Bot;
-use GuzzleHttp\Client;
-use GuzzleHttp\Handler\Proxy;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
