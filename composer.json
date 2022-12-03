@@ -9,7 +9,11 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "^3.1",
+        "mediconesystems/livewire-datatables": "^0.10.0",
+        "psr/simple-cache": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
