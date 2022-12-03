@@ -27,9 +27,9 @@ class Bot
 
     public function request($method, $params = [])
     {
-        return $this->clinet->request('GET', $method, [
+        return $this->clinet->request('POST', $method, [
             "base_uri" => $this->getBaseUri(),
-            "query" => $params
+            "json" => $params
         ]);
     }
 
