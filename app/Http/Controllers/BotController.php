@@ -15,7 +15,7 @@ class BotController extends Controller
     const COMMANDS = [
         '/start' => "start",
         '/upload' => 'upload',
-        '/files' => null,
+        '/files' => 'files',
     ];
 
     public function __construct(private Bot $bot)
@@ -135,6 +135,30 @@ class BotController extends Controller
             "chat_id" => $message["chat"]["id"],
             "text" => Storage::disk("public")->url($path),
             "reply_to_message_id" => $message["message_id"],
+        ]);
+        $user->files()->create([
+            "telegram_file_id" => $document["file_id"],
+            "name" => $fileName,
+            "path" => $path,
+            "size" => $document["file_size"],
+        ]);
+        $this->setLastCommand($user, null);
+    }
+
+    public function files($message, User|null $user)
+    {
+        $files = $user->files;
+
+        $text = '';
+
+        foreach ($files as $file) {
+            $text .= "<a href=\"{$file->url}\">{$file->name}</a>\n";
+        }
+
+        $this->bot->request("sendMessage", [
+            "chat_id" => $message["chat"]["id"],
+            "text" => $text ?? "<b>هیچ فایلی آپلود نشده است.</b>",
+            "parse_mode" => "html"
         ]);
 
         $this->setLastCommand($user, null);
