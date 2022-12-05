@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'dashboard'])->name("dashboard");
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/{user}', [UserController::class, 'show'])->name('show');
     });
 });
 
